@@ -4,13 +4,13 @@ GitHub Pages host for [Vest](https://github.com/y1ca1/vest) rustdoc documentatio
 
 ## Usage
 
-1. Generate the documentation locally with `cargo doc`:
+1. From the [vest repository](https://github.com/y1ca1/vest) (`vest2.0` branch), run the provided `doc.sh` script to generate the `doc/` folder using `verusdoc`:
    ```sh
-   cargo doc --no-deps
+   ./doc.sh
    ```
-2. Copy the generated `target/doc/` folder into the root of this repository as `doc/`:
+2. Copy the generated `doc/` folder into the root of this repository:
    ```sh
-   cp -r target/doc/ /path/to/vest-docs/doc/
+   cp -r doc/ /path/to/vest-docs/doc/
    ```
 3. Commit and push to `main`:
    ```sh
