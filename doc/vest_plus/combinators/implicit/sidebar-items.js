@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["proof","spec"],"struct":["Implicit","ImplicitAuto"],"trait":["LosslessImplicit","LosslessImplicitAuto"]};

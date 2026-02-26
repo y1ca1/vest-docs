@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["lemma_disjoint_choice","lemma_disjoint_cond","lemma_disjoint_eof","lemma_disjoint_mapped","lemma_disjoint_optional","lemma_disjoint_preceded","lemma_disjoint_refined","lemma_disjoint_repeat","lemma_disjoint_tag","lemma_disjoint_terminated","lemma_disjoint_tuple","lemma_disjoint_tuple_2"]};

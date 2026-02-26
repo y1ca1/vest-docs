@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["NestedBracesT"],"fn":["good_parser","nested_braces_body"],"struct":["NestedBracesBody","NestedBracesMapper"],"trait":["RecBody"],"type":["ParserSpecs"]};

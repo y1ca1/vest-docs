@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["disjoint_domains","parser_fails_on"],"trait":["AdmitsUniqueVal","BytesCombinator","Consistency","DisjointFrom","GoodParser","GoodSerializer","GoodSerializerDps","SpecByteLen","SpecCombinator","SpecParser","SpecPred","SpecSerializer","SpecSerializerDps","Unambiguity"],"type":["PredFnSpec"]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["spec"],"struct":["Permute2","Permute3","Permute4","Swap2Mapper","Swap3Mapper1","Swap3Mapper2","Swap4Mapper1","Swap4Mapper2","Swap4Mapper3"]};

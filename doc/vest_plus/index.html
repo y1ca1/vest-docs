@@ -1,0 +1,35 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="VEST++: The next generation VErified Serialization Toolkit"><title>vest_plus - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-e56847b5.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="vest_plus" data-themes="" data-resource-suffix="" data-rustdoc-version="1.91.0 (f8297e351 2025-10-28)" data-channel="1.91.0" data-search-js="search-e256b49e.js" data-stringdex-js="stringdex-c3e638e9.js" data-settings-js="settings-c38705f0.js" ><script src="../static.files/storage-e2aeef58.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-6dc2a7f3.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><rustdoc-topbar><h2><a href="#">Crate vest_plus</a></h2></rustdoc-topbar><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../vest_plus/index.html">vest_<wbr>plus</a></h2></div><div class="sidebar-elems"><ul class="block"><li><a id="all-types" href="all.html">All Items</a></li></ul><section id="rustdoc-toc"><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#vest-the-next-generation-verified-serialization-toolkit" title="VEST++: The next generation VErified Serialization Toolkit">VEST++: The next generation VErified Serialization Toolkit</a><ul><li><a href="#key-properties" title="Key Properties">Key Properties</a></li><li><a href="#a-taste-of-the-dsl-and-combinators" title="A Taste of the DSL and Combinators">A Taste of the DSL and Combinators</a></li></ul></li></ul><h3><a href="#modules">Crate Items</a></h3><ul class="block"><li><a href="#modules" title="Modules">Modules</a></li><li><a href="#types" title="Type Aliases">Type Aliases</a></li></ul></section><div id="rustdoc-modnav"></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><section id="main-content" class="content"><div class="main-heading"><h1>Crate <span>vest_<wbr>plus</span>&nbsp;<button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../src/vest_plus/lib.rs.html#1-65">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="vest-the-next-generation-verified-serialization-toolkit"><a class="doc-anchor" href="#vest-the-next-generation-verified-serialization-toolkit">§</a>VEST++: The next generation VErified Serialization Toolkit</h2>
+<p>Vest++ provides a library of formally verified (de-)serializer <strong>combinators</strong> built with
+<a href="https://github.com/verus-lang/verus">Verus</a>, as well as a domain-specific language (DSL) for defining
+complex binary data formats leveraging these formally verified combinators.</p>
+<h3 id="key-properties"><a class="doc-anchor" href="#key-properties">§</a>Key Properties</h3>
+<p>All Vest++ combinators are formally proven to satisfy <strong><a href="core/proof/trait.SPRoundTrip.html" title="trait vest_plus::core::proof::SPRoundTrip">Serialize-Parse Roundtrip</a></strong>:
+for any value <code>v</code> consistent with a format, serializing <code>v</code> and then parsing the result recovers <code>v</code>.
+Additionally, combinators that are proven to be <strong><a href="core/proof/trait.NonMalleable.html" title="trait vest_plus::core::proof::NonMalleable">Non-Malleable</a></strong> also satisfy
+<strong><a href="core/proof/trait.PSRoundTrip.html" title="trait vest_plus::core::proof::PSRoundTrip">Parse-Serialize Roundtrip</a></strong>: parsing a buffer and then serializing the result
+reproduces the consumed prefix of the original buffer.</p>
+<h3 id="a-taste-of-the-dsl-and-combinators"><a class="doc-anchor" href="#a-taste-of-the-dsl-and-combinators">§</a>A Taste of the DSL and Combinators</h3>
+<p>A simple TLV (tag-length-value) message can be expressed as</p>
+<div class="example-wrap"><pre class="language-vest"><code>tlv = {
+  @t: u8,
+  @l: u16,
+  v: [u8; @l] &gt;&gt;= choose(@t) {
+    0x01 =&gt; Vec&lt;msg1&gt;,
+    0x02 =&gt; msg2,
+    0x03 =&gt; msg3,
+    _ =&gt; void, // reject other tag values
+  }
+};</code></pre></div>
+<p>The same format can be expressed using combinators as</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let </span>tlv =
+    Bind(
+    (U8, U16Le),
+    TLVOf(
+      TVOr(<span class="number">0x01</span>, RepeatUntilEof(Msg1),
+      TVOr(<span class="number">0x02</span>, Msg2,
+      TVOr(<span class="number">0x03</span>, Msg3,
+      Uninhabited()))))
+);</code></pre></div>
+<p>See the <a href="combinators/index.html" title="mod vest_plus::combinators"><code>combinators</code></a> module for the full catalog of available combinators.</p>
+</div></details><h2 id="modules" class="section-header">Modules<a href="#modules" class="anchor">§</a></h2><dl class="item-table"><dt><a class="mod" href="combinators/index.html" title="mod vest_plus::combinators">combinators</a></dt><dd>Combinators for composing binary data formats.</dd><dt><a class="mod" href="core/index.html" title="mod vest_plus::core">core</a></dt><dd>Core specifications and correctness/security theorems for Vest++ combinators.</dd></dl><h2 id="types" class="section-header">Type Aliases<a href="#types" class="anchor">§</a></h2><dl class="item-table"><dt><a class="type" href="type.Never.html" title="type vest_plus::Never">Never</a></dt><dd>An uninhabitable type used to represent impossible values (e.g., in <a href="combinators/marker/struct.Void.html" title="struct vest_plus::combinators::marker::Void"><code>combinators::Void</code></a>).</dd></dl></section></div></main></body></html>
