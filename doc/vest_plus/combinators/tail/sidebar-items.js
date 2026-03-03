@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":["proof","spec"],"struct":["Eof","OptionalEof","RepeatUtilEof","Tail"]};
+window.SIDEBAR_ITEMS = {"mod":["proof","spec"],"struct":["Eof","OptionalEnd","RepeatTillEnd","Tail"]};

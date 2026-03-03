@@ -14,17 +14,17 @@
 <a href=#14 id=14 data-nosnippet>14</a>//!
 <a href=#15 id=15 data-nosnippet>15</a>//! | Combinator | Description |
 <a href=#16 id=16 data-nosnippet>16</a>//! |---|---|
-<a href=#17 id=17 data-nosnippet>17</a>//! | [`(A, B)`](tuple::spec) | Sequential composition |
+<a href=#17 id=17 data-nosnippet>17</a>//! | [`Pair&lt;A, B&gt;`] | Sequential composition |
 <a href=#18 id=18 data-nosnippet>18</a>//! | [`Choice&lt;A, B&gt;`] | Non-malleable ordered alternative |
 <a href=#19 id=19 data-nosnippet>19</a>//! | [`Alt&lt;A, B&gt;`] | Malleable ordered alternative |
 <a href=#20 id=20 data-nosnippet>20</a>//! | [`Opt&lt;A&gt;`] | Optional value |
-<a href=#21 id=21 data-nosnippet>21</a>//! | [`Optional&lt;A, B&gt;`] | Same as `(Opt&lt;A&gt;, B)`, but disambiguates `A` and `B` |
+<a href=#21 id=21 data-nosnippet>21</a>//! | [`Optional&lt;A, B&gt;`] | Same as `Pair(Opt&lt;A&gt;, B)`, but disambiguates `A` and `B` |
 <a href=#22 id=22 data-nosnippet>22</a>//! | [`Star&lt;A&gt;`] | The Kleene star: zero-or-more repetitions |
-<a href=#23 id=23 data-nosnippet>23</a>//! | [`Repeat&lt;A, B&gt;`] | Same as `(Star&lt;A&gt;, B)`, but disambiguates `A` and `B` |
+<a href=#23 id=23 data-nosnippet>23</a>//! | [`Repeat&lt;A, B&gt;`] | Same as `Pair(Star&lt;A&gt;, B)`, but disambiguates `A` and `B` |
 <a href=#24 id=24 data-nosnippet>24</a>//! | [`RepeatN&lt;C, Len&gt;`] | Fixed number of repetitions determined by a length parameter |
 <a href=#25 id=25 data-nosnippet>25</a>//! | [`Array&lt;N, C&gt;`] | Array of values of length `N` |
-<a href=#26 id=26 data-nosnippet>26</a>//! | [`Preceded&lt;A, B&gt;`] | Same as `(A, B)`, but discards A's value |
-<a href=#27 id=27 data-nosnippet>27</a>//! | [`Terminated&lt;A, B&gt;`] | Same as `(A, B)`, but discards B's value |
+<a href=#26 id=26 data-nosnippet>26</a>//! | [`Preceded&lt;A, B&gt;`] | Same as `Pair(A, B)`, but discards A's value |
+<a href=#27 id=27 data-nosnippet>27</a>//! | [`Terminated&lt;A, B&gt;`] | Same as `Pair(A, B)`, but discards B's value |
 <a href=#28 id=28 data-nosnippet>28</a>//! | [`Mapped&lt;Inner, M&gt;`] | Isomorphic format transformation via a [bijection](mapped::spec::Mapper) |
 <a href=#29 id=29 data-nosnippet>29</a>//! | [`Refined&lt;Inner, Pred&gt;`] | Format refinement via a [predicate](crate::core::spec::SpecPred) |
 <a href=#30 id=30 data-nosnippet>30</a>//! | [`Tag&lt;Inner, T&gt;`] | Matches a specific constant value |
@@ -57,8 +57,8 @@
 <a href=#57 id=57 data-nosnippet>57</a>//! |---|---|
 <a href=#58 id=58 data-nosnippet>58</a>//! | [`Tail`] | Like [`Varied`], but at the tail position (underspecify the format and allow trailing data) |
 <a href=#59 id=59 data-nosnippet>59</a>//! | [`Eof`] | Signals end-of-file (no trailing data) |
-<a href=#60 id=60 data-nosnippet>60</a>//! | [`OptionalEof&lt;C&gt;`] | Same as `Optional&lt;C, Eof&gt;` (for convenience) |
-<a href=#61 id=61 data-nosnippet>61</a>//! | [`RepeatUtilEof&lt;C&gt;`] | Same as `Repeat&lt;C, Eof&gt;` (for convenience) |
+<a href=#60 id=60 data-nosnippet>60</a>//! | [`OptionalEnd&lt;C&gt;`] | Same as `Optional&lt;C, Eof&gt;` (for convenience) |
+<a href=#61 id=61 data-nosnippet>61</a>//! | [`RepeatTillEnd&lt;C&gt;`] | Same as `Repeat&lt;C, Eof&gt;` (for convenience) |
 <a href=#62 id=62 data-nosnippet>62</a>//!
 <a href=#63 id=63 data-nosnippet>63</a>//! # Marker combinators
 <a href=#64 id=64 data-nosnippet>64</a>//!
@@ -72,43 +72,46 @@
 <a href=#72 id=72 data-nosnippet>72</a>//! | Combinator | Description |
 <a href=#73 id=73 data-nosnippet>73</a>//! |---|---|
 <a href=#74 id=74 data-nosnippet>74</a>//! | [`Fix&lt;LIMIT, Body&gt;`] | (Compile-time) bounded fixpoint for recursive formats |
-<a href=#75 id=75 data-nosnippet>75</a>
-<a href=#76 id=76 data-nosnippet>76</a></span><span class="kw">pub mod </span>berbool;
-<a href=#77 id=77 data-nosnippet>77</a><span class="kw">pub mod </span>bytes;
-<a href=#78 id=78 data-nosnippet>78</a><span class="kw">pub mod </span>choice;
-<a href=#79 id=79 data-nosnippet>79</a><span class="kw">pub mod </span>cond;
-<a href=#80 id=80 data-nosnippet>80</a><span class="kw">pub mod </span>dependent;
-<a href=#81 id=81 data-nosnippet>81</a><span class="kw">pub mod </span>disjoint;
-<a href=#82 id=82 data-nosnippet>82</a><span class="kw">pub mod </span>implicit;
-<a href=#83 id=83 data-nosnippet>83</a><span class="kw">pub mod </span>length;
-<a href=#84 id=84 data-nosnippet>84</a><span class="kw">pub mod </span>mapped;
-<a href=#85 id=85 data-nosnippet>85</a><span class="kw">pub mod </span>marker;
-<a href=#86 id=86 data-nosnippet>86</a><span class="kw">pub mod </span>opt;
-<a href=#87 id=87 data-nosnippet>87</a><span class="kw">pub mod </span>permute;
-<a href=#88 id=88 data-nosnippet>88</a><span class="kw">pub mod </span>preceded;
-<a href=#89 id=89 data-nosnippet>89</a><span class="kw">pub mod </span>recursive;
-<a href=#90 id=90 data-nosnippet>90</a><span class="kw">pub mod </span>refined;
-<a href=#91 id=91 data-nosnippet>91</a><span class="kw">pub mod </span>star;
-<a href=#92 id=92 data-nosnippet>92</a><span class="kw">pub mod </span>tail;
-<a href=#93 id=93 data-nosnippet>93</a><span class="kw">pub mod </span>terminated;
-<a href=#94 id=94 data-nosnippet>94</a><span class="kw">pub mod </span>tuple;
-<a href=#95 id=95 data-nosnippet>95</a><span class="kw">pub mod </span>uints;
-<a href=#96 id=96 data-nosnippet>96</a>
-<a href=#97 id=97 data-nosnippet>97</a><span class="kw">pub use </span>berbool::BerBool;
-<a href=#98 id=98 data-nosnippet>98</a><span class="kw">pub use </span>bytes::{Fixed, Varied};
-<a href=#99 id=99 data-nosnippet>99</a><span class="kw">pub use </span>choice::{Alt, Choice, Sum};
-<a href=#100 id=100 data-nosnippet>100</a><span class="kw">pub use </span>cond::Cond;
-<a href=#101 id=101 data-nosnippet>101</a><span class="kw">pub use </span>dependent::{Bind, DepCombinator, TVLeaf, TVOr, VoidTag};
-<a href=#102 id=102 data-nosnippet>102</a><span class="kw">pub use </span>implicit::{Implicit, ImplicitAuto};
-<a href=#103 id=103 data-nosnippet>103</a><span class="kw">pub use </span>length::AsLen;
-<a href=#104 id=104 data-nosnippet>104</a><span class="kw">pub use </span>mapped::Mapped;
-<a href=#105 id=105 data-nosnippet>105</a><span class="kw">pub use </span>marker::{Empty, Void};
-<a href=#106 id=106 data-nosnippet>106</a><span class="kw">pub use </span>opt::{Opt, Optional};
-<a href=#107 id=107 data-nosnippet>107</a><span class="kw">pub use </span>permute::{Permute2, Permute3, Permute4};
-<a href=#108 id=108 data-nosnippet>108</a><span class="kw">pub use </span>preceded::Preceded;
-<a href=#109 id=109 data-nosnippet>109</a><span class="kw">pub use </span>recursive::{Fix, RecBody};
-<a href=#110 id=110 data-nosnippet>110</a><span class="kw">pub use </span>refined::{Refined, Tag, Tagged};
-<a href=#111 id=111 data-nosnippet>111</a><span class="kw">pub use </span>star::{Array, Repeat, RepeatN, Star};
-<a href=#112 id=112 data-nosnippet>112</a><span class="kw">pub use </span>tail::{Eof, OptionalEof, RepeatUtilEof, Tail};
-<a href=#113 id=113 data-nosnippet>113</a><span class="kw">pub use </span>terminated::Terminated;
-<a href=#114 id=114 data-nosnippet>114</a><span class="kw">pub use </span>uints::{U16Be, U16Le, U32Be, U32Le, U8};</code></pre></div></section></main></body></html>
+<a href=#75 id=75 data-nosnippet>75</a></span><span class="kw">pub mod </span>berbool;
+<a href=#76 id=76 data-nosnippet>76</a><span class="kw">pub mod </span>bytes;
+<a href=#77 id=77 data-nosnippet>77</a><span class="kw">pub mod </span>choice;
+<a href=#78 id=78 data-nosnippet>78</a><span class="kw">pub mod </span>cond;
+<a href=#79 id=79 data-nosnippet>79</a><span class="kw">pub mod </span>dependent;
+<a href=#80 id=80 data-nosnippet>80</a><span class="kw">pub mod </span>disjoint;
+<a href=#81 id=81 data-nosnippet>81</a><span class="kw">pub mod </span>implicit;
+<a href=#82 id=82 data-nosnippet>82</a><span class="kw">pub mod </span>length;
+<a href=#83 id=83 data-nosnippet>83</a><span class="kw">pub mod </span>mapped;
+<a href=#84 id=84 data-nosnippet>84</a><span class="kw">pub mod </span>marker;
+<a href=#85 id=85 data-nosnippet>85</a><span class="kw">pub mod </span>opt;
+<a href=#86 id=86 data-nosnippet>86</a><span class="kw">pub mod </span>permute;
+<a href=#87 id=87 data-nosnippet>87</a><span class="kw">pub mod </span>preceded;
+<a href=#88 id=88 data-nosnippet>88</a><span class="kw">pub mod </span>recursive;
+<a href=#89 id=89 data-nosnippet>89</a><span class="kw">pub mod </span>refined;
+<a href=#90 id=90 data-nosnippet>90</a><span class="kw">pub mod </span>star;
+<a href=#91 id=91 data-nosnippet>91</a><span class="kw">pub mod </span>tail;
+<a href=#92 id=92 data-nosnippet>92</a><span class="kw">pub mod </span>terminated;
+<a href=#93 id=93 data-nosnippet>93</a><span class="kw">pub mod </span>tuple;
+<a href=#94 id=94 data-nosnippet>94</a><span class="kw">pub mod </span>uints;
+<a href=#95 id=95 data-nosnippet>95</a>
+<a href=#96 id=96 data-nosnippet>96</a><span class="kw">pub use </span>berbool::BerBool;
+<a href=#97 id=97 data-nosnippet>97</a><span class="kw">pub use </span>bytes::{Fixed, Varied};
+<a href=#98 id=98 data-nosnippet>98</a><span class="kw">pub use </span>choice::{Alt, Choice, Sum};
+<a href=#99 id=99 data-nosnippet>99</a><span class="kw">pub use </span>cond::Cond;
+<a href=#100 id=100 data-nosnippet>100</a><span class="kw">pub use </span>dependent::{Bind, DepCombinator, TVLeaf, TVOr, VoidTag};
+<a href=#101 id=101 data-nosnippet>101</a><span class="kw">pub use </span>implicit::{Implicit, ImplicitAuto};
+<a href=#102 id=102 data-nosnippet>102</a><span class="kw">pub use </span>length::AsLen;
+<a href=#103 id=103 data-nosnippet>103</a><span class="kw">pub use </span>mapped::Mapped;
+<a href=#104 id=104 data-nosnippet>104</a><span class="kw">pub use </span>marker::{Empty, Void};
+<a href=#105 id=105 data-nosnippet>105</a><span class="kw">pub use </span>opt::{Opt, Optional};
+<a href=#106 id=106 data-nosnippet>106</a><span class="kw">pub use </span>permute::{Permute2, Permute3, Permute4};
+<a href=#107 id=107 data-nosnippet>107</a><span class="kw">pub use </span>preceded::Preceded;
+<a href=#108 id=108 data-nosnippet>108</a><span class="comment">// pub use recursive::{
+<a href=#109 id=109 data-nosnippet>109</a>//     Fix, GoodRecSBody, NonMalleableRecPBody, NonTailRecSBodyDPS, RecBLenBody, RecCnstcyBody,
+<a href=#110 id=110 data-nosnippet>110</a>//     RecPBody, RecSBody, RecSBodyDPS, SoundRecPBody,
+<a href=#111 id=111 data-nosnippet>111</a>// };
+<a href=#112 id=112 data-nosnippet>112</a></span><span class="kw">pub use </span>refined::{Refined, Tag, Tagged};
+<a href=#113 id=113 data-nosnippet>113</a><span class="kw">pub use </span>star::{Array, Repeat, RepeatN, Star};
+<a href=#114 id=114 data-nosnippet>114</a><span class="kw">pub use </span>tail::{Eof, OptionalEnd, RepeatTillEnd, Tail};
+<a href=#115 id=115 data-nosnippet>115</a><span class="kw">pub use </span>terminated::Terminated;
+<a href=#116 id=116 data-nosnippet>116</a><span class="kw">pub use </span>tuple::Pair;
+<a href=#117 id=117 data-nosnippet>117</a><span class="kw">pub use </span>uints::{U16Be, U16Le, U32Be, U32Le, U8};</code></pre></div></section></main></body></html>

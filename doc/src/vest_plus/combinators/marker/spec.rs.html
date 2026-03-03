@@ -25,14 +25,14 @@
 <a href=#25 id=25 data-nosnippet>25</a>    }
 <a href=#26 id=26 data-nosnippet>26</a>}
 <a href=#27 id=27 data-nosnippet>27</a>
-<a href=#28 id=28 data-nosnippet>28</a><span class="kw">impl </span>GoodParser <span class="kw">for </span><span class="kw">super</span>::Empty {
-<a href=#29 id=29 data-nosnippet>29</a>    proof <span class="kw">fn </span>lemma_parse_len_bound(<span class="kw-2">&amp;</span><span class="self">self</span>, ibuf: Seq&lt;u8&gt;) {
+<a href=#28 id=28 data-nosnippet>28</a><span class="kw">impl </span>SoundParser <span class="kw">for </span><span class="kw">super</span>::Empty {
+<a href=#29 id=29 data-nosnippet>29</a>    proof <span class="kw">fn </span>lemma_parse_safe(<span class="kw-2">&amp;</span><span class="self">self</span>, ibuf: Seq&lt;u8&gt;) {
 <a href=#30 id=30 data-nosnippet>30</a>    }
 <a href=#31 id=31 data-nosnippet>31</a>
-<a href=#32 id=32 data-nosnippet>32</a>    proof <span class="kw">fn </span>lemma_parse_byte_len(<span class="kw-2">&amp;</span><span class="self">self</span>, ibuf: Seq&lt;u8&gt;) {
+<a href=#32 id=32 data-nosnippet>32</a>    proof <span class="kw">fn </span>lemma_parse_sound_consumption(<span class="kw-2">&amp;</span><span class="self">self</span>, ibuf: Seq&lt;u8&gt;) {
 <a href=#33 id=33 data-nosnippet>33</a>    }
 <a href=#34 id=34 data-nosnippet>34</a>
-<a href=#35 id=35 data-nosnippet>35</a>    proof <span class="kw">fn </span>lemma_parse_consistent(<span class="kw-2">&amp;</span><span class="self">self</span>, ibuf: Seq&lt;u8&gt;) {
+<a href=#35 id=35 data-nosnippet>35</a>    proof <span class="kw">fn </span>lemma_parse_sound_value(<span class="kw-2">&amp;</span><span class="self">self</span>, ibuf: Seq&lt;u8&gt;) {
 <a href=#36 id=36 data-nosnippet>36</a>    }
 <a href=#37 id=37 data-nosnippet>37</a>}
 <a href=#38 id=38 data-nosnippet>38</a>
@@ -56,8 +56,8 @@
 <a href=#56 id=56 data-nosnippet>56</a>
 <a href=#57 id=57 data-nosnippet>57</a>}
 <a href=#58 id=58 data-nosnippet>58</a>
-<a href=#59 id=59 data-nosnippet>59</a><span class="kw">impl </span>GoodSerializerDps <span class="kw">for </span><span class="kw">super</span>::Empty {
-<a href=#60 id=60 data-nosnippet>60</a>    proof <span class="kw">fn </span>lemma_serialize_dps_buf(<span class="kw-2">&amp;</span><span class="self">self</span>, v: <span class="self">Self</span>::ST, obuf: Seq&lt;u8&gt;) {
+<a href=#59 id=59 data-nosnippet>59</a><span class="kw">impl </span>NonTailFmt <span class="kw">for </span><span class="kw">super</span>::Empty {
+<a href=#60 id=60 data-nosnippet>60</a>    proof <span class="kw">fn </span>lemma_serialize_dps_prepend(<span class="kw-2">&amp;</span><span class="self">self</span>, v: <span class="self">Self</span>::ST, obuf: Seq&lt;u8&gt;) {
 <a href=#61 id=61 data-nosnippet>61</a>        assert(<span class="self">self</span>.spec_serialize_dps(v, obuf) == Seq::&lt;u8&gt;::empty() + obuf);
 <a href=#62 id=62 data-nosnippet>62</a>    }
 <a href=#63 id=63 data-nosnippet>63</a>
@@ -101,14 +101,14 @@
 <a href=#101 id=101 data-nosnippet>101</a>    }
 <a href=#102 id=102 data-nosnippet>102</a>}
 <a href=#103 id=103 data-nosnippet>103</a>
-<a href=#104 id=104 data-nosnippet>104</a><span class="kw">impl </span>GoodParser <span class="kw">for </span><span class="kw">super</span>::Void {
-<a href=#105 id=105 data-nosnippet>105</a>    proof <span class="kw">fn </span>lemma_parse_len_bound(<span class="kw-2">&amp;</span><span class="self">self</span>, ibuf: Seq&lt;u8&gt;) {
+<a href=#104 id=104 data-nosnippet>104</a><span class="kw">impl </span>SoundParser <span class="kw">for </span><span class="kw">super</span>::Void {
+<a href=#105 id=105 data-nosnippet>105</a>    proof <span class="kw">fn </span>lemma_parse_safe(<span class="kw-2">&amp;</span><span class="self">self</span>, ibuf: Seq&lt;u8&gt;) {
 <a href=#106 id=106 data-nosnippet>106</a>    }
 <a href=#107 id=107 data-nosnippet>107</a>
-<a href=#108 id=108 data-nosnippet>108</a>    proof <span class="kw">fn </span>lemma_parse_byte_len(<span class="kw-2">&amp;</span><span class="self">self</span>, ibuf: Seq&lt;u8&gt;) {
+<a href=#108 id=108 data-nosnippet>108</a>    proof <span class="kw">fn </span>lemma_parse_sound_consumption(<span class="kw-2">&amp;</span><span class="self">self</span>, ibuf: Seq&lt;u8&gt;) {
 <a href=#109 id=109 data-nosnippet>109</a>    }
 <a href=#110 id=110 data-nosnippet>110</a>
-<a href=#111 id=111 data-nosnippet>111</a>    proof <span class="kw">fn </span>lemma_parse_consistent(<span class="kw-2">&amp;</span><span class="self">self</span>, ibuf: Seq&lt;u8&gt;) {
+<a href=#111 id=111 data-nosnippet>111</a>    proof <span class="kw">fn </span>lemma_parse_sound_value(<span class="kw-2">&amp;</span><span class="self">self</span>, ibuf: Seq&lt;u8&gt;) {
 <a href=#112 id=112 data-nosnippet>112</a>    }
 <a href=#113 id=113 data-nosnippet>113</a>}
 <a href=#114 id=114 data-nosnippet>114</a>
@@ -134,8 +134,8 @@
 <a href=#134 id=134 data-nosnippet>134</a>
 <a href=#135 id=135 data-nosnippet>135</a>}
 <a href=#136 id=136 data-nosnippet>136</a>
-<a href=#137 id=137 data-nosnippet>137</a><span class="kw">impl </span>GoodSerializerDps <span class="kw">for </span><span class="kw">super</span>::Void {
-<a href=#138 id=138 data-nosnippet>138</a>    proof <span class="kw">fn </span>lemma_serialize_dps_buf(<span class="kw-2">&amp;</span><span class="self">self</span>, v: <span class="self">Self</span>::ST, obuf: Seq&lt;u8&gt;) {
+<a href=#137 id=137 data-nosnippet>137</a><span class="kw">impl </span>NonTailFmt <span class="kw">for </span><span class="kw">super</span>::Void {
+<a href=#138 id=138 data-nosnippet>138</a>    proof <span class="kw">fn </span>lemma_serialize_dps_prepend(<span class="kw-2">&amp;</span><span class="self">self</span>, v: <span class="self">Self</span>::ST, obuf: Seq&lt;u8&gt;) {
 <a href=#139 id=139 data-nosnippet>139</a>        <span class="kw">let </span>new_buf = Seq::&lt;u8&gt;::empty();
 <a href=#140 id=140 data-nosnippet>140</a>        assert(obuf == new_buf + obuf);
 <a href=#141 id=141 data-nosnippet>141</a>    }

@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"type":["ByteLenFnSpec","ParserFnSpec","SerializerDPSFnSpec","SerializerDPSSpecs","SerializerFnSpec","SerializerSpecs","UnambiguityFnSpec"]};
+window.SIDEBAR_ITEMS = {"type":["ByteLenFnSpec","ParserFnSpec","SerializerDPSFnSpec","SerializerFnSpec","UnambiguityFnSpec"]};

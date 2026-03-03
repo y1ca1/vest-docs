@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":["proof","spec"]};
+window.SIDEBAR_ITEMS = {"mod":["proof","spec"],"struct":["Pair"]};
